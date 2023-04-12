@@ -1,7 +1,15 @@
 import {pieceToImageMapper, xPositionToChar} from "../../logic/pieces-util";
 import React from "react";
 import {setDivId, setImgId} from "../../logic/html-ids";
-import {onDragEnd, onDragEnter, onDragLeave, onDragOver, onDragStart, onDrop} from "../../logic/drag-drop-handlers";
+import {
+    onClickDiv, onClickImg,
+    onDragEnd,
+    onDragEnter,
+    onDragLeave,
+    onDragOver,
+    onDragStart,
+    onDrop
+} from "../../logic/drag-drop-handlers";
 import {COLUMNS, ROWS} from "../../constants/board-constants";
 import {Colors} from "../../constants/pieces-constants";
 
@@ -35,6 +43,8 @@ export default function PieceComponent({ cell, y_pos, x_pos, canMoveHere, canMov
             onDragEnter={(e) => onDragEnter(e, pieceBeingDragged, canMoveHere)}
             onDragLeave={(e) => onDragLeave(e, pieceBeingDragged)}
             // onDragEnd={onDragEndCell}
+
+            onClick={(e) => onClickDiv(e, pieceBeingDragged, setPieceBeingDragged, canMoveHere, gameid, userid, board)}
         >
             { x_pos === 0 && <p className='absolute ml-1 pointer-events-none font-bold'>{ROWS - y_pos}</p>}
             { y_pos === COLUMNS - 1 && <p className='absolute bottom-0 right-0 mr-1 pointer-events-none font-bold'>{xPositionToChar[x_pos]}</p>}
@@ -51,6 +61,8 @@ export default function PieceComponent({ cell, y_pos, x_pos, canMoveHere, canMov
                     onDragStart={(e) => onDragStart(e, setPieceBeingDragged)}
                     onDragEnd={(e) => onDragEnd(e, setPieceBeingDragged)}
                     // onDrag={onDrag}
+
+                    onClick={(e) => onClickImg(e, canMovePiece, pieceBeingDragged, setPieceBeingDragged)}
                 />
             }
 

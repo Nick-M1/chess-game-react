@@ -1,7 +1,7 @@
 import {DROP_PIECE_CSS, HOVER_DRAG_CSS} from "../constants/css-constants";
 import postNewMove from "../database/post-new-move";
 import React from "react";
-import {compareDivAndImgId} from "./html-ids";
+import {compareDivAndImgId, getImgId} from "./html-ids";
 
 
 // PIECE EVENT LISTENERS ---
@@ -17,6 +17,14 @@ export function onDragStart(event: React.DragEvent<HTMLImageElement>, setPieceBe
 // When this piece is dropped (initially)
 export function onDragEnd(event: React.DragEvent<HTMLImageElement>, setPieceBeingDragged: (newPiece: (string | null)) => void) {
     setPieceBeingDragged(null)
+}
+
+
+export function onClickImg(event: React.MouseEvent<HTMLImageElement, MouseEvent>, canMovePiece: boolean, pieceBeingDragged: string | null, setPieceBeingDragged: (newPiece: (string | null)) => void) {
+    if (!(event.target instanceof Element))
+        return
+
+    setPieceBeingDragged(!canMovePiece || (pieceBeingDragged !== null && pieceBeingDragged === event.target.id) ? null : event.target.id)
 }
 
 
@@ -37,6 +45,25 @@ export function onDrop(event: React.DragEvent<HTMLDivElement>, pieceBeingDragged
     eventElement.classList.remove(...HOVER_DRAG_CSS)
     eventElement.classList.add(DROP_PIECE_CSS)
     setTimeout(() => eventElement.classList.remove(DROP_PIECE_CSS), 300)
+}
+
+
+export function onClickDiv(event: React.MouseEvent<HTMLDivElement, MouseEvent>, pieceBeingDragged: string | null, setPieceBeingDragged: (newPiece: (string | null)) => void, canMoveHere: boolean, gameid: string, userid: string, board: Board) {
+    if (!(event.target instanceof Element))
+        return
+
+    const eventElement = event.target.nodeName === "IMG" ? event.target.parentElement! : event.target
+
+    if (pieceBeingDragged && canMoveHere) {
+        postNewMove(eventElement, pieceBeingDragged, gameid, userid, board)
+
+        eventElement.classList.add(DROP_PIECE_CSS)
+        setTimeout(() => eventElement.classList.remove(DROP_PIECE_CSS), 300)
+
+        setPieceBeingDragged(null)
+    }
+
+    eventElement.classList.remove(...HOVER_DRAG_CSS)
 }
 
 
