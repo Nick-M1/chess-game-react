@@ -40,6 +40,7 @@ export interface Database {
           GameId: string | null
           isPieceAlive: boolean
           MoveId: number
+          MoveText: string | null
           MoveTimestamp: string
           PieceId: number
           PositionX: number
@@ -50,6 +51,7 @@ export interface Database {
           GameId?: string | null
           isPieceAlive?: boolean
           MoveId?: number
+          MoveText?: string | null
           MoveTimestamp?: string
           PieceId: number
           PositionX: number
@@ -60,6 +62,7 @@ export interface Database {
           GameId?: string | null
           isPieceAlive?: boolean
           MoveId?: number
+          MoveText?: string | null
           MoveTimestamp?: string
           PieceId?: number
           PositionX?: number

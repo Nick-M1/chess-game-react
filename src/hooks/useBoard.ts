@@ -11,12 +11,19 @@ type QueryResponseType = {
     PositionX: number,
     isPieceAlive: boolean
     UserId: string | null
+    MoveText: string | null
 }
 
 export default function useBoard(gameid: string, userId: string, playerColor: Colors | null) {
 
     // Initialise empty board
     const [board, setBoard] = useState(createBoard())
+
+    // Store all moves
+    const [movesText, setMovesText] = useState<string[]>([])
+    const movesTextPushRight = (newText: string) => setMovesText(prevState => [...prevState, newText] )
+    const movesTextPushLeft  = (newText: string) => setMovesText(prevState => [newText, ...prevState] )
+
 
     // Initialise is this player's turn
     const [isPlayersTurn, setIsPlayersTurn] = useState(false)
@@ -55,6 +62,14 @@ export default function useBoard(gameid: string, userId: string, playerColor: Co
                     return mostRecentMove.UserId !== userId
             })
 
+            // Add all non-null move-text
+            setMovesText([])
+            data.forEach(({ MoveText }: QueryResponseType) => {
+                if (MoveText != null)
+                    movesTextPushRight(MoveText)
+
+            })
+
         }
         getAllRecentMovesAndBuildBoard()
     }, [])
@@ -80,6 +95,9 @@ export default function useBoard(gameid: string, userId: string, playerColor: Co
                     })
 
                     setIsPlayersTurn(payload.new.UserId !== userId)
+
+                    if (payload.new.MoveText != null)
+                        movesTextPushLeft(payload.new.MoveText)
                 }
             ).subscribe()
 
@@ -88,5 +106,5 @@ export default function useBoard(gameid: string, userId: string, playerColor: Co
         }
     }, [])
 
-    return [board, isPlayersTurn] as const
+    return [board, isPlayersTurn, movesText] as const
 }
