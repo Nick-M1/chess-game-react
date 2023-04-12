@@ -13,6 +13,7 @@ export interface Database {
         Row: {
           GameEndTimestamp: string | null
           GameId: string
+          Gameover: boolean
           GameStartTimestamp: string
           UserIdBlack: string | null
           UserIdWhite: string | null
@@ -20,6 +21,7 @@ export interface Database {
         Insert: {
           GameEndTimestamp?: string | null
           GameId?: string
+          Gameover?: boolean
           GameStartTimestamp?: string
           UserIdBlack?: string | null
           UserIdWhite?: string | null
@@ -27,6 +29,7 @@ export interface Database {
         Update: {
           GameEndTimestamp?: string | null
           GameId?: string
+          Gameover?: boolean
           GameStartTimestamp?: string
           UserIdBlack?: string | null
           UserIdWhite?: string | null

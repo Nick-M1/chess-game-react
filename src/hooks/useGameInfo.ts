@@ -23,6 +23,8 @@ export default function useGameInfo(gameid: string) {
                         .then(data => {
                             setGameInfo(data)
                         })
+
+                    console.log(payload)
                 }
             ).subscribe()
 

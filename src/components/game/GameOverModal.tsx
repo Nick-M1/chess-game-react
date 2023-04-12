@@ -15,7 +15,6 @@ type Props = {
 }
 
 export default function GameOverModal({ modalOpen, setModalOpen, gameInfo, isWinner, playerColor }: Props) {
-    console.log(isWinner)
 
     return (
         <ModalCustom title='GAME OVER!' modalOpen={modalOpen} setModalOpen={setModalOpen}>
