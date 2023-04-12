@@ -67,7 +67,7 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
     const [pieceBeingDragged, setPieceBeingDragged, possibleMoves] = usePieceBeingDragged(board, isCheckCondition, playerColor)
     useToastPopups(pieceBeingDragged, isPlayersTurn, isCheckCondition != null, gameInfo.gameend_timestamp !== null)
 
-    const [gameoverModalOpen, setGameoverModalOpen] = useState(true)
+    const [gameoverModalOpen, setGameoverModalOpen] = useState(false)
 
     useEffect(() => {
         if (gameInfo.gameend_timestamp == null && isCheckCondition != null && isCheckCondition.length === 0)
