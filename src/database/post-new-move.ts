@@ -1,5 +1,6 @@
 import {getDivId, getImgId} from "../logic/html-ids";
 import {supabase} from "../supabase_setup";
+import {setGameover} from "./set-gameover";
 
 export default async function postNewMove(element: Element, pieceBeingDragged: string, gameid: string, userid: string, board: Board) {
     const pieceId = getImgId(pieceBeingDragged).pieceId
@@ -25,4 +26,7 @@ export default async function postNewMove(element: Element, pieceBeingDragged: s
         })
 
     await supabase.from('tblGameMoves').insert(request)
+
+    if (pieceId === 15 || pieceId === 31)
+        setGameover(gameid)
 }
