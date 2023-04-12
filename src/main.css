@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  .chess-grid {
+    @apply bg-darkgreen text-lightgreen outline -outline-offset-8 outline-8 outline-transparent smooth-transition
+  }
+
+  .chess-grid:nth-child(-2n+7),
+  .chess-grid:nth-child(9) ~ div:nth-child(-2n+16),
+  .chess-grid:nth-child(16) ~ div:nth-child(-2n+23),
+  .chess-grid:nth-child(25) ~ div:nth-child(-2n+32),
+  .chess-grid:nth-child(32) ~ div:nth-child(-2n+39),
+  .chess-grid:nth-child(41) ~ div:nth-child(-2n+48),
+  .chess-grid:nth-child(48) ~ div:nth-child(-2n+55),
+  .chess-grid:nth-child(57) ~ div:nth-child(-2n+64) {
+    @apply bg-lightgreen text-darkgreen smooth-transition
+  }
+
+  .btn-3d-base {
+    @apply py-3.5 px-6 rounded-lg cursor-pointer select-none text-center text-white font-bold text-lg
+    active:translate-y-2 active:border-b-[0px] transition-all duration-150 border-b-[1px]
+  }
+  .btn-3d-blue {
+    @apply btn-3d-base bg-blue-500 border-blue-400
+    active:[box-shadow:0_0px_0_0_#1b6ff8,0_0px_0_0_#1b70f841]
+    [box-shadow:0_10px_0_0_#1b6ff8,0_15px_0_0_#1b70f841]
+  }
+  .btn-3d-orange {
+    @apply btn-3d-base bg-orange-500 border-orange-400
+    active:[box-shadow:0_0px_0_0_#fb8c00,0_0px_0_0_#9653003A]
+    [box-shadow:0_10px_0_0_#fb8c00,0_15px_0_0_#9653003A]
+  }
+  .btn-3d-green {
+    @apply btn-3d-base bg-green-500 border-green-400
+    active:[box-shadow:0_0px_0_0_#43a047,0_0px_0_0_#00960A3A]
+    [box-shadow:0_10px_0_0_#43a047,0_15px_0_0_#00960A3A]
+  }
+
+  /* Older buttons */
+  .btn-primary {
+    @apply rounded-md border border-transparent drop-shadow-md shadow-lg bg-blue-700 py-2 px-5 text-center font-medium text-white tracking-wide hover:bg-indigo-700 focus:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-300 ease-out
+  }
+  .btn-secondary {
+    @apply justify-center text-sm rounded-xl border border-gray-200 drop-shadow-sm shadow-sm bg-blue-100 py-3 px-3 text-center font-medium text-blue-900 tracking-wide hover:bg-blue-200 hover:text-blue-600 focus:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 ease-out
+  }
+  .btn-tertiary {
+    @apply rounded-md bg-white/80 border border-gray-200 drop-shadow-md py-2 md:py-4 px-5 text-center font-medium text-black tracking-wide hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:z-[1] transition duration-300 ease-out
+  }
+
+  /* Newer buttons */
+  .btn-bouncy {
+    @apply active:scale-105
+  }
+
+  .button-base {
+    @apply py-3 px-5 rounded-md text-center font-medium tracking-wide text-white drop-shadow-md shadow-lg border active:outline-none active:ring-2 active:ring-offset-2 active:z-[1] btn-bouncy transition duration-300 ease-out
+  }
+  .button-white {
+    @apply button-base text-black bg-white/95 border-gray-200 shadow-white/10 hover:bg-gray-100 hover:text-blue-600 active:bg-white active:border-white active:ring-blue-500
+  }
+  .button-yellow {
+    @apply button-base text-black bg-yellow-500/80 border-yellow-500 shadow-orange-500/25 hover:bg-yellow-600/80 active:text-gray-300 active:bg-yellow-700/80 active:border-yellow-700/80 active:ring-yellow-500
+  }
+  .button-orange {
+    @apply button-base text-black bg-orange-500 border-orange-500 shadow-orange-500/25 hover:bg-orange-600/80 active:text-gray-300 active:bg-orange-700/80 active:border-orange-700/80 active:ring-orange-500
+  }
+  .button-lime {
+    @apply button-base text-black bg-lime-500 border-lime-500 shadow-lime-500/25 hover:bg-lime-600/80 active:text-gray-300 active:bg-lime-700/80 active:border-lime-700/80 active:ring-lime-500
+  }
+  .button-cyan {
+    @apply button-base text-black bg-cyan-500 border-blue-500 shadow-cyan-500/25 hover:bg-cyan-600 active:text-gray-300 active:bg-cyan-700 active:border-cyan-700/80 active:ring-blue-500
+  }
+  .button-blue {
+    @apply button-base text-neutral-300 bg-blue-600/80 border-blue-600 shadow-blue-500/25 hover:bg-blue-700/80 active:text-gray-200 active:bg-blue-800/80 active:border-blue-800/80 active:ring-blue-500
+  }
+  .button-indigo {
+    @apply button-base text-neutral-300 bg-indigo-500/80 border-indigo-500 shadow-indigo-500/25 hover:bg-indigo-600/80 active:text-gray-200 active:bg-indigo-700/80 active:border-indigo-700/80 active:ring-indigo-500
+  }
+  .button-pink {
+    @apply button-base text-black bg-pink-500/80 border-pink-500 shadow-pink-500/25 hover:bg-pink-600/80 active:text-gray-300 active:bg-pink-700/80 active:border-pink-700/80 active:ring-pink-500
+  }
+
+  .smooth-transition {
+    @apply transition duration-300 ease-out
+  }
+
+  .input-primary {
+    @apply rounded-lg p-3 mt-1 w-full bg-white/10 border border-gray-600 text-gray-200 placeholder-gray-300/50 shadow-sm hover:ring-1 hover:ring-white/25 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 smooth-transition backdrop-blur-lg
+  }
+  .input-primary-invalid {
+    @apply bg-red-100/10 border-red-600 text-red-200 placeholder-red-300/50 hover:ring-red-500/50 focus:border-red-500 focus:ring-red-500
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 30vh;
+    background: #4f536e2b;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #525252;
+    border-radius: 100vh;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #404040;
+  }
+}
+
+/*@layer base {*/
+/*  .font-outline-1 {*/
+/*    -webkit-text-stroke: 1px black;*/
+/*  }*/
+/*  .font-outline-2 {*/
+/*    -webkit-text-stroke: 2px black;*/
+/*  }*/
+/*  .font-outline-4 {*/
+/*    -webkit-text-stroke: 4px black;*/
+/*  }*/
+/*}*/
