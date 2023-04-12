@@ -115,8 +115,10 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
 
                 </div>
 
-                <div className='w-full sm:w-fit px-3 pt-3 mt-3 sm:ml-3 h-fit max-h-[15dvh] sm:max-h-[80dvh] sm:h-[76dvh] bg-white/10 rounded-lg overflow-y-auto scrollbar'>
+                <div className='w-full sm:w-fit px-4 pt-3 mt-3 sm:ml-3 h-fit max-h-[15dvh] sm:max-h-[80dvh] sm:h-[76dvh] bg-white/10 rounded-lg overflow-y-auto scrollbar'>
                     <h3 className='font-bold'>Moves History:</h3>
+                    <div className='border-b border-neutral-600 w-full my-1.5'/>
+
                     <ol className='italic marker:text-green-500 list-inside list-decimal' reversed>
                         { movesText.map((move, index) => (
                             <li key={`${index}-${move}`} className='pl-1'>
