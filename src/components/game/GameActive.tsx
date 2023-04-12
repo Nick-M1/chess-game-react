@@ -11,6 +11,7 @@ import {findPieceById} from "../../logic/board-util";
 import {getPossibleMoves, kingPossibleMoves} from "../../logic/possible-moves";
 import {setGameover} from "../../database/set-gameover";
 import GameOverModal from "./GameOverModal";
+import useGameover from "../../hooks/useGameover";
 
 type Props = {
     gameid: string
@@ -65,18 +66,11 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
     const isCheckCondition = useMemo(() => isCheckConditionFunc(kingsPieceId, playerColor, board), [kingsPieceId, playerColor, board])
 
     const [pieceBeingDragged, setPieceBeingDragged, possibleMoves] = usePieceBeingDragged(board, isCheckCondition, playerColor)
+    const [gameoverModalOpen, setGameoverModalOpen] = useGameover(gameid, gameInfo.gameend_timestamp, isCheckCondition)
+
     useToastPopups(pieceBeingDragged, isPlayersTurn, isCheckCondition != null, gameInfo.gameend_timestamp !== null)
 
-    const [gameoverModalOpen, setGameoverModalOpen] = useState(false)
 
-    useEffect(() => {
-        if (gameInfo.gameend_timestamp == null && isCheckCondition != null && isCheckCondition.length === 0)
-            setGameover(gameid)
-
-        if (gameInfo.gameend_timestamp !== null)
-            setGameoverModalOpen(true)
-
-    }, [isCheckCondition, gameInfo])
 
     return (
         <div className='w-screen h-screen bg-neutral-800 text-white p-3'>
