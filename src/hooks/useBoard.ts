@@ -62,7 +62,7 @@ export default function useBoard(gameid: string, userId: string, playerColor: Co
 
     // Subscribe to new inserts in DB and update board
     useEffect(() => {
-        const tblGameMoves = supabase.channel('custom-insert-channel')
+        const tblGameMoves = supabase.channel('gamemoves-channel')
             .on(
                 'postgres_changes',
                 { event: 'INSERT', schema: 'public', table: 'tblGameMoves', filter: `GameId=eq.${gameid}` },

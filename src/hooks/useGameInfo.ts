@@ -14,17 +14,16 @@ export default function useGameInfo(gameid: string) {
 
 
     useEffect(() => {
-        const tblGameInfo = supabase.channel('custom-insert-channel')
+        const tblGameInfo = supabase.channel('gameinfo-channel')
             .on(
                 'postgres_changes',
                 { event: '*', schema: 'public', table: 'tblChessGames', filter: `GameId=eq.${gameid}` },
                 (payload) => {
+
                     getGameinfo(gameid)
                         .then(data => {
                             setGameInfo(data)
                         })
-
-                    console.log(payload)
                 }
             ).subscribe()
 
