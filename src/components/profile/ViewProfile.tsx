@@ -3,6 +3,7 @@ import {supabase} from "../../supabase_setup";
 import LayoutHeader from "../layout/LayoutHeader";
 import NavButtonRight from "../shared/NavButtonRight";
 import NavButtonLeft from "../shared/NavButtonLeft";
+import {Link} from "react-router-dom";
 
 type Props = {
     userid: string
@@ -47,7 +48,9 @@ export default function ViewProfile({ userid }: Props) {
                         <tbody className='text-sm text-neutral-500'>
                         { gamesInfo?.map(game => (
                             <tr key={game.GameId}>
-                                <td className=' line-clamp-1 w-32'>{ game.GameId }</td>
+                                <td className=' line-clamp-1 w-32'>
+                                    <Link to={`/game/${game.GameId}`}>{ game.GameId }</Link>
+                                </td>
                                 <td>{ game.GameStartTimestamp.split('T')[0] }</td>
                                 <td>{ userid === game.UserIdBlack ? 'Black' : 'White' }</td>
                             </tr>
