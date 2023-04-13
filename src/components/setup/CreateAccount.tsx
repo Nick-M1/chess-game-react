@@ -1,7 +1,7 @@
 import {createNewUser} from "../../database/create-new-user";
 import {useNavigate} from "react-router-dom";
 import chessLogoPng from "../../assets/chess-logo.png";
-import LayoutHeader from "../layout/LayoutHeader";
+import LayoutHeader from "../../layout/LayoutHeader";
 
 export default function CreateAccount() {
     const navigate = useNavigate()

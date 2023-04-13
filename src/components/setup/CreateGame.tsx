@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {createNewGame, joinGame} from "../../database/create-new-game";
-import LayoutHeader from "../layout/LayoutHeader";
+import LayoutHeader from "../../layout/LayoutHeader";
 import chessLogoPng from "../../assets/chess-logo.png"
 import NavButtonRight from "../shared/NavButtonRight";
 

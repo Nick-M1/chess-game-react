@@ -1,4 +1,4 @@
-import LayoutHeader from "../layout/LayoutHeader";
+import LayoutHeader from "../../layout/LayoutHeader";
 import chessLogoPng from "../../assets/chess-logo.png"
 import DisplayGameroomid from "../shared/DisplayGameroomid";
 

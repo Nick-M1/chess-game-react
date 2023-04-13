@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {supabase} from "../../supabase_setup";
-import LayoutHeader from "../layout/LayoutHeader";
+import LayoutHeader from "../../layout/LayoutHeader";
 import NavButtonLeft from "../shared/NavButtonLeft";
 import {Link} from "react-router-dom";
 
