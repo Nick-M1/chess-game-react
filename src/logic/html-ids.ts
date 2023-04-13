@@ -20,13 +20,13 @@ export function getDivId(divId: string) {
 }
 
 // Img (piece)
-export function setImgId(x_pos: number, y_pos: number, pieceId: number, pieceColor: Colors, pieceName: ChessPieces) {
+export function setImgId(x_pos: number, y_pos: number, pieceId: number, pieceColor: Colors, pieceName: ChessPieces, isPromotedPawn: boolean) {
     const pieceIdString = pieceId.toLocaleString('en-US', {
         minimumIntegerDigits: 2,
         useGrouping: false
     })
 
-    return `img-${x_pos}${y_pos}-${pieceIdString}-${pieceColor}${pieceName}`
+    return `img-${x_pos}${y_pos}-${pieceIdString}-${pieceColor}${pieceName}-${Number(isPromotedPawn)}`
 }
 
 export function getImgId(imgId: string) {
@@ -35,7 +35,8 @@ export function getImgId(imgId: string) {
         y_pos: Number(imgId[5]),
         pieceId: Number(`${imgId[7]}${imgId[8]}`),
         pieceColor: Number(imgId[10]),
-        pieceName: Number(imgId[11])
+        pieceName: Number(imgId[11]),
+        isPromotedPawn: imgId[13] === '1'
     }
 }
 

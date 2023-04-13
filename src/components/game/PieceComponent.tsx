@@ -53,7 +53,7 @@ export default function PieceComponent({ cell, y_pos, x_pos, canMoveHere, canMov
 
             { !cell.isEmpty &&
                 <img
-                    id={setImgId(x_pos, y_pos, cell.PieceId, cell.PieceColor!, cell.PieceName!)}
+                    id={setImgId(x_pos, y_pos, cell.PieceId, cell.PieceColor!, cell.PieceName!, cell.isPromotedPawn)}
                     src={pieceToImageMapper(cell.PieceName!, cell.PieceColor!)}
                     alt='cell'
                     draggable={canMovePiece}

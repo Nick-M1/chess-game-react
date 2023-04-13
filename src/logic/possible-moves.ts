@@ -48,7 +48,7 @@ function pawnPossibleMoves(y: number, x: number, board: Board, playerColor: Colo
 
     const possibleMoves: Coords[] = []
 
-    if (board[y - 1 * thisPieceDirection][x].isEmpty)
+    if (y - 1 * thisPieceDirection < COLUMNS && board[y - 1 * thisPieceDirection][x].isEmpty)
         possibleMoves.push([ y - 1 * thisPieceDirection, x ])
 
     if (y === thisPieceStartingRow && board[y - 2 * thisPieceDirection][x].isEmpty && board[y - 1 * thisPieceDirection][x].isEmpty )

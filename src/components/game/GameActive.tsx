@@ -1,21 +1,15 @@
 import PieceComponent from "./PieceComponent";
 import useBoard from "../../hooks/useBoard";
 import usePieceBeingDragged from "../../hooks/usePieceBeingDragged";
-import {useEffect, useMemo, useState} from "react";
+import {useMemo} from "react";
 import {Colors} from "../../constants/pieces-constants";
 import {Navigate} from "react-router-dom";
 import {getPlayerColorFromGameInfo} from "../../logic/player-util";
-import unknownProfilePng from "../../assets/unknown-profilepic.png"
 import useToastPopups from "../../hooks/useToastPopups";
-import {findPieceById} from "../../logic/board-util";
-import {getPossibleMoves, kingPossibleMoves} from "../../logic/possible-moves";
-import {setGameover} from "../../database/set-gameover";
 import GameOverModal from "./GameOverModal";
 import useGameover from "../../hooks/useGameover";
-import useTimer from "../../hooks/useTimer";
-import {ROUND_SECONDS} from "../../constants/board-constants";
-import TimerComponent from "./TimerComponent";
 import GameHeader from "./GameHeader";
+import {isCheckConditionFunc} from "../../logic/checkmate-checker";
 
 type Props = {
     gameid: string
@@ -23,39 +17,7 @@ type Props = {
     gameInfo: GameInfoType
 }
 
-// todo: do another func for checkmate condition (using the same func as used here previously)
-function isCheckConditionFunc(kingsPieceId: number, playerColor: Colors, board: Board): Coords[] | null {
-    const kingPieceCoords = findPieceById(kingsPieceId, board)
-    let kingInCheck = false
 
-    if (kingPieceCoords == null)
-        return null
-
-    const possibleKingMoves = kingPossibleMoves(kingPieceCoords[0], kingPieceCoords[1], board, playerColor)
-
-    const allPossibleMoves: Coords[] = []
-    board.forEach((row, y_pos) => {
-        row.forEach((cell, x_pos) => {
-            if (!cell.isEmpty && cell.PieceColor != playerColor) {
-                const possibleMoves = getPossibleMoves(y_pos, x_pos, board, cell.PieceName!, cell.PieceColor!)
-
-                if (!kingInCheck)
-                    kingInCheck = possibleMoves.some(possibleCoord => possibleCoord[0] === kingPieceCoords[0] && possibleCoord[1] === kingPieceCoords[1])
-
-                allPossibleMoves.push(...possibleMoves)
-            }
-        })
-    })
-
-    if (!kingInCheck)
-        return null
-
-    return possibleKingMoves.filter(coord =>
-        !allPossibleMoves.some(possibleCoord =>
-            possibleCoord[0] === coord[0] && possibleCoord[1] === coord[1]
-        )
-    )
-}
 
 export function GameActive({ gameid, userid, gameInfo }: Props) {
     // todo: put into own hook
@@ -73,7 +35,6 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
     const [gameoverModalOpen, setGameoverModalOpen] = useGameover(gameid, gameInfo.gameend_timestamp, isCheckCondition)
 
     useToastPopups(pieceBeingDragged, isPlayersTurn, isCheckCondition != null, gameInfo.gameend_timestamp !== null)
-    console.log(userid)
 
     return (
         <div className='w-screen h-screen bg-neutral-800 text-white p-3 overflow-clip tracking-wider'>

@@ -2,6 +2,8 @@ import {getDivId, getImgId} from "../logic/html-ids";
 import {supabase} from "../supabase_setup";
 import {setGameover} from "./set-gameover";
 import {recordMoveFormatter} from "../logic/recording-move";
+import {ChessPieces} from "../constants/pieces-constants";
+import {ROWS} from "../constants/board-constants";
 
 type RequestType = {
     GameId: string;
@@ -11,14 +13,19 @@ type RequestType = {
     PositionY: number;
     isPieceAlive: boolean;
     MoveText: string | null;
+    isPromotedPawn: boolean
 }
 
 export default async function postNewMove(element: Element, pieceBeingDragged: string, gameid: string, userid: string, board: Board) {
-    const { pieceId, x_pos: x_pos_original, pieceName  } = getImgId(pieceBeingDragged)
+    const { pieceId, x_pos: x_pos_original, pieceName, isPromotedPawn, pieceColor  } = getImgId(pieceBeingDragged)
     const { x_pos, y_pos } = getDivId(element.id)
 
     const isCapture = !board[y_pos][x_pos].isEmpty
     const moveFormatted = recordMoveFormatter(pieceName, y_pos, x_pos, x_pos_original, isCapture)
+
+    // check if pawn being promoted
+    const isPromotedPawnNow = pieceName === ChessPieces.PAWN.valueOf() && (y_pos === 0 || y_pos === ROWS - 1)
+
 
     const request: RequestType[] = [{
         GameId: gameid,
@@ -27,7 +34,8 @@ export default async function postNewMove(element: Element, pieceBeingDragged: s
         PositionX: x_pos,
         PositionY: y_pos,
         isPieceAlive: true,
-        MoveText: moveFormatted
+        MoveText: moveFormatted,
+        isPromotedPawn: isPromotedPawn || isPromotedPawnNow
     }]
 
     if (isCapture)
@@ -38,8 +46,10 @@ export default async function postNewMove(element: Element, pieceBeingDragged: s
             PositionX: x_pos,
             PositionY: y_pos,
             isPieceAlive: false,
-            MoveText: null
+            MoveText: null,
+            isPromotedPawn: isPromotedPawn || isPromotedPawnNow
         })
+
 
     await supabase.from('tblGameMoves').insert(request)
 

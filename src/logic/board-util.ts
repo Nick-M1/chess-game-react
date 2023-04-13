@@ -1,7 +1,7 @@
 import {COLUMNS, ROWS} from "../constants/board-constants";
 
 export function defaultCell(): Cell {
-    return { PieceId: -1, isEmpty: true }
+    return { PieceId: -1, isEmpty: true, isPromotedPawn: false }
 }
 
 export function createBoard(): Board {

@@ -6,6 +6,7 @@ type Cell = {
     PieceId: number
     PieceName?: import("./src/constants/pieces-constants").ChessPieces
     PieceColor?: import("./src/constants/pieces-constants").Colors
+    isPromotedPawn: boolean
 }
 
 

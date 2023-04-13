@@ -39,6 +39,7 @@ export interface Database {
         Row: {
           GameId: string | null
           isPieceAlive: boolean
+          isPromotedPawn: boolean
           MoveId: number
           MoveText: string | null
           MoveTimestamp: string
@@ -50,6 +51,7 @@ export interface Database {
         Insert: {
           GameId?: string | null
           isPieceAlive?: boolean
+          isPromotedPawn?: boolean
           MoveId?: number
           MoveText?: string | null
           MoveTimestamp?: string
@@ -61,6 +63,7 @@ export interface Database {
         Update: {
           GameId?: string | null
           isPieceAlive?: boolean
+          isPromotedPawn?: boolean
           MoveId?: number
           MoveText?: string | null
           MoveTimestamp?: string
@@ -129,12 +132,6 @@ export interface Database {
           gameid: string
         }
         Returns: Record<string, unknown>
-      }
-      setgameover: {
-        Args: {
-          gameid: string
-        }
-        Returns: undefined
       }
       setGameover: {
         Args: {
