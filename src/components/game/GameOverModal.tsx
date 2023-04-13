@@ -17,7 +17,7 @@ type Props = {
 export default function GameOverModal({ modalOpen, setModalOpen, gameInfo, isWinner, playerColor }: Props) {
 
     return (
-        <ModalCustom title='GAME OVER!' modalOpen={modalOpen} setModalOpen={setModalOpen}>
+        <ModalCustom title='CHECKMATE' modalOpen={modalOpen} setModalOpen={setModalOpen}>
             <div className='flex items-center pt-6 pb-1'>
                 <img src={unknownProfilePng} alt='profile' title='Player 1 (You)' className='w-8 rounded-full self-center' draggable={false}/>
                 <h3 className='text-left ml-2 text-neutral-400'>

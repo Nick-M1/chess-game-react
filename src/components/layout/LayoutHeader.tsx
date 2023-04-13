@@ -10,7 +10,7 @@ type Props = {
 export default function LayoutHeader({ children }: Props) {
 
     return (
-        <div className='w-screen h-screen bg-neutral-800 text-gray-300 py-2 font-riffic'>
+        <div className='w-screen h-screen bg-neutral-800 text-gray-300 py-2'>
             <div className="flex items-center space-x-2 w-full px-2 md:px-4">
                 <Link to='/'>
                     <img src={chessLogoPng} alt="logo" className="w-10"/>

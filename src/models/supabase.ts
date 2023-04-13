@@ -13,26 +13,26 @@ export interface Database {
         Row: {
           GameEndTimestamp: string | null
           GameId: string
-          Gameover: boolean
           GameStartTimestamp: string
           UserIdBlack: string | null
           UserIdWhite: string | null
+          WinnerId: string | null
         }
         Insert: {
           GameEndTimestamp?: string | null
           GameId?: string
-          Gameover?: boolean
           GameStartTimestamp?: string
           UserIdBlack?: string | null
           UserIdWhite?: string | null
+          WinnerId?: string | null
         }
         Update: {
           GameEndTimestamp?: string | null
           GameId?: string
-          Gameover?: boolean
           GameStartTimestamp?: string
           UserIdBlack?: string | null
           UserIdWhite?: string | null
+          WinnerId?: string | null
         }
       }
       tblGameMoves: {
@@ -112,6 +112,12 @@ export interface Database {
         }
         Returns: undefined
       }
+      getAllGamesByUser: {
+        Args: {
+          userid: string
+        }
+        Returns: Record<string, unknown>[]
+      }
       getAllPiecesByLatestMove: {
         Args: {
           gameid: string
@@ -123,6 +129,12 @@ export interface Database {
           gameid: string
         }
         Returns: Record<string, unknown>
+      }
+      setgameover: {
+        Args: {
+          gameid: string
+        }
+        Returns: undefined
       }
       setGameover: {
         Args: {

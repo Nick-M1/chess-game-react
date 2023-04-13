@@ -2,6 +2,7 @@ import {useNavigate} from "react-router-dom";
 import {createNewGame, joinGame} from "../../database/create-new-game";
 import LayoutHeader from "../layout/LayoutHeader";
 import chessLogoPng from "../../assets/chess-logo.png"
+import NavButtonRight from "../shared/NavButtonRight";
 
 type Props = {
     userId: string
@@ -36,7 +37,9 @@ export default function CreateGame({ userId }: Props) {
 
     return (
         <LayoutHeader>
-            <div className='flex flex-col justify-center items-center space-y-8 px-4 sm:px-8'>
+            <div className='relative flex flex-col justify-center items-center space-y-8 px-4 sm:px-8'>
+                <NavButtonRight text='PROFILE' to='/profile'/>
+
                 <img src={chessLogoPng} alt='home-icon' className='max-h-[30vh] w-fit mx-auto py-3'/>
 
                 <button onClick={createNewGameHandler} className='btn-3d-green'>

@@ -73,11 +73,10 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
     const [gameoverModalOpen, setGameoverModalOpen] = useGameover(gameid, gameInfo.gameend_timestamp, isCheckCondition)
 
     useToastPopups(pieceBeingDragged, isPlayersTurn, isCheckCondition != null, gameInfo.gameend_timestamp !== null)
-
-    console.log(isCheckCondition)
+    console.log(userid)
 
     return (
-        <div className='w-screen h-screen bg-neutral-800 text-white p-3 overflow-clip font-riffic tracking-wider'>
+        <div className='w-screen h-screen bg-neutral-800 text-white p-3 overflow-clip tracking-wider'>
             <GameHeader
                 isPlayersTurn={isPlayersTurn}
                 playerColor={playerColor}

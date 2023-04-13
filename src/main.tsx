@@ -10,7 +10,7 @@ const router = createBrowserRouter(
 
         <Route element={<LayoutMain/>} errorElement={<ErrorPage/>}>
             <Route index lazy={() => import("./pages/HomePage")}/>
-            {/*<Route path='/leaderboard' lazy={() => import("./pages/LeaderboardPage")}/>*/}
+            <Route path='/profile' lazy={() => import("./pages/ProfilePage")}/>
             <Route path='/game/:gameid' lazy={() => import("./pages/GamePage")}/>
         </Route>
     )

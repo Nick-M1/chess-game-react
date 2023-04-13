@@ -27,7 +27,17 @@ module.exports = {
 
       gridTemplateRows: {
         '8': 'repeat(8, minmax(0, 1fr))',
-      }
+      },
+
+      keyframes: {
+        bounceRight: {
+          '0%, 100%': {transform: 'translateX(-25%)'},
+          '50%': {transform: 'translateX(0%)'},
+        },
+      },
+      animation: {
+        bounceRight: 'bounceRight 1s infinite',
+      },
     },
   },
   plugins: [],
