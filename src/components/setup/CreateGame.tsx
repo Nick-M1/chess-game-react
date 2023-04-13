@@ -38,9 +38,9 @@ export default function CreateGame({ userId }: Props) {
     return (
         <LayoutHeader>
             <div className='relative flex flex-col justify-center items-center space-y-8 px-4 sm:px-8'>
-                <NavButtonRight text='PROFILE' to='/profile'/>
+                <NavButtonRight text='PROFILE' to='/profile' className='text-teal-500 hover:text-teal-600 active:text-teal-800 smooth-transition'/>
 
-                <img src={chessLogoPng} alt='home-icon' className='max-h-[30vh] w-fit mx-auto py-3'/>
+                <img src={chessLogoPng} alt='home-icon' className='max-h-[30vh] w-fit mx-auto py-3 '/>
 
                 <button onClick={createNewGameHandler} className='btn-3d-green'>
                     Create A New Game
@@ -48,7 +48,7 @@ export default function CreateGame({ userId }: Props) {
 
                 <h3>OR</h3>
 
-                <form onSubmit={joinGameHandler} className='w-full max-w-xl smooth-transition'>
+                <form onSubmit={joinGameHandler} className='w-full max-w-xl smooth-transition bg-white/10 py-3 px-6 rounded-lg shadow-xl drop-shadow-2xl'>
                     <label htmlFor='join-game-id' className='text-xl tracking-wide font-semibold'>Join a game</label>
 
                     <div className='flex space-x-2 my-1.5'>
