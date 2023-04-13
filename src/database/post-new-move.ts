@@ -1,9 +1,9 @@
 import {getDivId, getImgId} from "../logic/html-ids";
 import {supabase} from "../supabase_setup";
-import {setGameover} from "./set-gameover";
 import {recordMoveFormatter} from "../logic/recording-move";
 import {ChessPieces} from "../constants/pieces-constants";
 import {ROWS} from "../constants/board-constants";
+import {setGameover} from "./set-gameover";
 
 type RequestType = {
     GameId: string;
@@ -20,6 +20,7 @@ export default async function postNewMove(element: Element, pieceBeingDragged: s
     const { pieceId, x_pos: x_pos_original, pieceName, isPromotedPawn, pieceColor  } = getImgId(pieceBeingDragged)
     const { x_pos, y_pos } = getDivId(element.id)
 
+    const originalPiece = board[y_pos][x_pos]
     const isCapture = !board[y_pos][x_pos].isEmpty
     const moveFormatted = recordMoveFormatter(pieceName, y_pos, x_pos, x_pos_original, isCapture)
 
@@ -53,6 +54,6 @@ export default async function postNewMove(element: Element, pieceBeingDragged: s
 
     await supabase.from('tblGameMoves').insert(request)
 
-    if (pieceId === 15 || pieceId === 31)
+    if (originalPiece.PieceName === ChessPieces.KING)
         setGameover(gameid)
 }
