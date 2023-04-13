@@ -19,7 +19,7 @@ export default function useGameInfo(gameid: string) {
                 'postgres_changes',
                 { event: '*', schema: 'public', table: 'tblChessGames', filter: `GameId=eq.${gameid}` },
                 (payload) => {
-
+                    console.log(payload)
                     getGameinfo(gameid)
                         .then(data => {
                             setGameInfo(data)

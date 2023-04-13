@@ -5,6 +5,10 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      riffic: ["Riffic", "sans-serif"],
+    },
+
     extend: {
       height: {
         screen: ['100vh', '100dvh'],

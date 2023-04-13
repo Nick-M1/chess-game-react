@@ -4,7 +4,7 @@ import {Toaster} from "react-hot-toast";
 export default function LayoutMain() {
     return (
         <>
-            <Toaster reverseOrder={true}/>
+            <Toaster position="bottom-center" reverseOrder={true}/>
             <Outlet/>
         </>
     )

@@ -12,6 +12,10 @@ import {getPossibleMoves, kingPossibleMoves} from "../../logic/possible-moves";
 import {setGameover} from "../../database/set-gameover";
 import GameOverModal from "./GameOverModal";
 import useGameover from "../../hooks/useGameover";
+import useTimer from "../../hooks/useTimer";
+import {ROUND_SECONDS} from "../../constants/board-constants";
+import TimerComponent from "./TimerComponent";
+import GameHeader from "./GameHeader";
 
 type Props = {
     gameid: string
@@ -70,26 +74,16 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
 
     useToastPopups(pieceBeingDragged, isPlayersTurn, isCheckCondition != null, gameInfo.gameend_timestamp !== null)
 
-
+    console.log(isCheckCondition)
 
     return (
-        <div className='w-screen h-screen bg-neutral-800 text-white p-3 overflow-clip'>
-
-            <div className='flex items-center'>
-                <img src={unknownProfilePng} alt='profile' title='Player 1 (You)' className='w-8 rounded-full self-center' draggable={false}/>
-                <h3 className={`text-left ml-2 ${ isPlayersTurn ? 'text-teal-500' : 'text-neutral-200' }`}>
-                    { playerColor === Colors.WHITE ? 'White ' : 'Black ' } Player: <br/> { playerColor === Colors.WHITE ? gameInfo.username_white : gameInfo.username_black }
-                </h3>
-
-                <div className='flex-grow'/>
-
-                <h3 className={`text-right mr-2 ${ isPlayersTurn ? 'text-neutral-200' : 'text-teal-500' }`}>
-                    { playerColor === Colors.WHITE ? 'Black ' : 'White ' } Player: <br/> { playerColor === Colors.WHITE ? gameInfo.username_black: gameInfo.username_white }
-                </h3>
-                <img src={unknownProfilePng} alt='profile' title='Player 2' className='w-8 rounded-full self-center' draggable={false}/>
-            </div>
-
-            <div className='border-b border-neutral-700 w-full my-2'/>
+        <div className='w-screen h-screen bg-neutral-800 text-white p-3 overflow-clip font-riffic tracking-wider'>
+            <GameHeader
+                isPlayersTurn={isPlayersTurn}
+                playerColor={playerColor}
+                blackPlayerUsername={gameInfo.username_black}
+                whitePlayerUsername={gameInfo.username_white}
+            />
 
             <div className='sm:flex'>
                 <div className='grid grid-cols-8 grid-rows-8 md:max-w-[80dvw] max-h-[80dvh] aspect-square border-4 border-black'>
@@ -115,7 +109,7 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
 
                 </div>
 
-                <div className='w-full sm:w-fit px-4 pt-3 mt-3 sm:ml-3 h-fit max-h-[15dvh] sm:max-h-[80dvh] sm:h-[76dvh] bg-white/10 rounded-lg overflow-y-auto scrollbar'>
+                <div className='hidden sm:block w-fit px-4 pt-3 mt-3 ml-3 max-h-[80dvh] h-[76dvh] bg-white/10 rounded-lg overflow-y-auto scrollbar'>
                     <h3 className='font-bold'>Moves History:</h3>
                     <div className='border-b border-neutral-600 w-full my-1.5'/>
 

@@ -9,7 +9,7 @@ type Props = {
 export default function DisplayGameroomid({ gameroomid, width, className }: Props) {
     const copyToClipboard = () => {
         navigator.clipboard.writeText(gameroomid)
-        toast('Gameroom ID copied to clipboard', { id: 'clipboard', icon: '📋' })
+        toast('Gameroom ID copied to clipboard', { id: 'clipboard', icon: '📋', position: 'top-center' })
     }
 
     return (

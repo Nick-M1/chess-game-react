@@ -5,7 +5,7 @@ export default function useGameover(gameid: string, gameoverTimestamp: null | st
     const [gameoverModalOpen, setGameoverModalOpen] = useState(false)
 
     useEffect(() => {
-        if (gameoverTimestamp && isCheckCondition != null && isCheckCondition.length === 0)
+        if (gameoverTimestamp == null && isCheckCondition != null && isCheckCondition.length === 0)
             setGameover(gameid)
 
         if (gameoverTimestamp)

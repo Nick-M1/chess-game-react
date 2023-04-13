@@ -8,5 +8,7 @@ export function toastOptionsCustom(options: ToastOptions, backgroundColor: strin
         backgroundColor,
     }
 
+    options.className = 'font-riffic text-sm tracking-wide'
+
     return options
 }
