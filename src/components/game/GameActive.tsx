@@ -10,6 +10,7 @@ import GameOverModal from "./GameOverModal";
 import useGameover from "../../hooks/useGameover";
 import GameHeader from "./GameHeader";
 import {isCheckConditionFunc} from "../../logic/checkmate-checker";
+import useGameHeaderInfo from "../../hooks/useGameHeaderInfo";
 
 type Props = {
     gameid: string
@@ -33,6 +34,7 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
 
     const [pieceBeingDragged, setPieceBeingDragged, possibleMoves] = usePieceBeingDragged(board, isCheckCondition, playerColor)
     const [gameoverModalOpen, setGameoverModalOpen] = useGameover(gameid, gameInfo.gameend_timestamp, isCheckCondition)
+    const gameHeaderInfo = useGameHeaderInfo(playerColor, gameInfo)
 
     useToastPopups(pieceBeingDragged, isPlayersTurn, isCheckCondition != null, gameInfo.gameend_timestamp !== null)
 
@@ -40,10 +42,11 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
         <div className='w-screen h-screen bg-neutral-800 text-white p-3 overflow-clip tracking-wider'>
             <GameHeader
                 isPlayersTurn={isPlayersTurn}
-                playerColor={playerColor}
-                blackPlayerUsername={gameInfo.username_black}
-                whitePlayerUsername={gameInfo.username_white}
+                showTimer={true}
+                gameHeaderInfo={gameHeaderInfo}
             />
+
+            <div className='border-b border-neutral-700 w-full my-2'/>
 
             <div className='sm:flex'>
                 <div className='grid grid-cols-8 grid-rows-8 md:max-w-[80dvw] max-h-[80dvh] aspect-square border-4 border-black'>
@@ -87,9 +90,8 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
             <GameOverModal
                 modalOpen={gameoverModalOpen}
                 setModalOpen={setGameoverModalOpen}
-                gameInfo={gameInfo}
+                gameHeaderInfo={gameHeaderInfo}
                 isWinner={!isPlayersTurn}
-                playerColor={playerColor}
             />
         </div>
     )

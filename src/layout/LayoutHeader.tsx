@@ -11,7 +11,7 @@ export default function LayoutHeader({ children }: Props) {
 
     return (
         <div className='w-screen h-screen bg-neutral-800 text-gray-300'>
-            <div className="flex items-center space-x-2 w-full py-3 px-2 md:px-4 bg-neutral-900/25">
+            <div className="flex items-center space-x-2 w-full py-3 px-2 md:px-4 bg-neutral-900/5">
                 <Link to='/'>
                     <img src={chessLogoPng} alt="logo" className="w-10"/>
                 </Link>

@@ -92,14 +92,17 @@ export interface Database {
       }
       tblUsers: {
         Row: {
+          Image: string | null
           Name: string | null
           UserId: string
         }
         Insert: {
+          Image?: string | null
           Name?: string | null
           UserId?: string
         }
         Update: {
+          Image?: string | null
           Name?: string | null
           UserId?: string
         }
