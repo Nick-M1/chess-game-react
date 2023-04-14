@@ -48,7 +48,7 @@ export function GameActive({ gameid, userid, gameInfo }: Props) {
 
             <div className='border-b border-neutral-700 w-full my-2'/>
 
-            <div className='sm:flex'>
+            <div className='sm:flex sm:justify-center'>
                 <div className='grid grid-cols-8 grid-rows-8 md:max-w-[80dvw] max-h-[80dvh] aspect-square border-4 border-black'>
 
                     { board && board.map((row, y_pos) => (

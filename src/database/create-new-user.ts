@@ -1,11 +1,11 @@
 import {supabase} from "../supabase_setup";
 import {LOCALSTORAGE_USERID_KEY} from "../constants/board-constants";
 
-export async function createNewUser(displayName: string) {
+export async function createNewUser(displayName: string, profileimg: string) {
     // store in database
     const { data, error } = await supabase
         .from('tblUsers')
-        .upsert({ Name: displayName })
+        .upsert({ Name: displayName, Image: profileimg })
         .select()
         .single()
 
