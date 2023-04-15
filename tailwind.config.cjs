@@ -18,7 +18,12 @@ module.exports = {
       },
       colors: {
         lightgreen: '#ECEED4',
-        darkgreen: '#749654'
+        darkgreen: '#749654',
+        lightbrown: '#FFCE9E',
+        darkbrown: '#D18B47',
+
+        'cell-light': 'rgb(var(--color-cell-light) / <alpha-value>)',
+        'cell-dark': 'rgb(var(--color-cell-dark) / <alpha-value>)',
       },
       backgroundImage: {
         'home-background': "url('assets/HomePageBackground.jpeg')",

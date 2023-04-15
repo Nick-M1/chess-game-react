@@ -36,3 +36,8 @@ type UserDBType = {
     UserIdBlack: string | null
     UserIdWhite: string | null
 }
+
+type BoardTheme = {
+    light: string
+    dark: string
+}
