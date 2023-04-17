@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {createBoard, findPieceByIdAndReplaceWithDefaultCell} from "../logic/board-util";
 import {supabase} from "../supabase_setup";
 import {ChessPieces, Colors} from "../constants/pieces-constants";
+import {setDivId} from "../logic/html-ids";
 
 type QueryResponseType = {
     PieceId: number,
@@ -103,6 +104,15 @@ export default function useBoard(gameid: string, userId: string, playerColor: Co
 
                     if (payload.new.MoveText != null)
                         movesTextPushLeft(payload.new.MoveText)
+
+                    if (payload.new.UserId != userId) {
+                        const divId = setDivId(payload.new.PositionX, payload.new.PositionY)
+                        const changedElem = document.getElementById(divId)
+                        changedElem?.classList.add('!bg-red-500')
+                        setTimeout(() => changedElem?.classList.remove('!bg-red-500'), 2_000)
+                    }
+
+
                 }
             ).subscribe()
 
