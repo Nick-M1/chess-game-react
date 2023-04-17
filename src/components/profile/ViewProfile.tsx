@@ -77,7 +77,7 @@ export default function ViewProfile({ userid, userDB }: Props) {
         <LayoutHeader>
             <div className='relative'>
                 <NavButtonRight text='MAIN MENU' to='/' className='text-teal-500 hover:text-teal-600 active:text-teal-800 smooth-transition'/>
-                <h1 className='text-center pt-12 pb-7 text-4xl font-bold tracking-widest '>PROFILE</h1>
+                <h1 className='text-center pt-20 pb-7 text-4xl font-bold tracking-widest '>PROFILE</h1>
 
                 <div className='px-3 flex justify-center'>
                     <div className='bg-white/10 py-5 px-6 rounded-lg shadow-xl drop-shadow-2xl flex items-center'>

@@ -56,7 +56,7 @@ export default function CreateGame({ userId }: Props) {
     return (
         <LayoutHeader>
             <div className='relative flex flex-col justify-center items-center space-y-8 px-4 sm:px-8 '>
-                <div className='flex'>
+                <div className='flex pb-6'>
                     <NavButtonLeft text='PROFILE' to='/profile' className='text-teal-500 hover:text-teal-600 active:text-teal-800 smooth-transition'/>
                     <NavButtonRight text='PREVIOUS MATCHES' to='/previousmatches' className='text-teal-500 hover:text-teal-600 active:text-teal-800 smooth-transition'/>
                 </div>

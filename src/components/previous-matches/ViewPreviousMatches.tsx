@@ -15,7 +15,7 @@ export default function ViewPreviousMatches({ userid, userDB }: Props) {
         <LayoutHeader>
             <div className='relative'>
                 <NavButtonLeft text='MAIN MENU' to='/' className='text-teal-500 hover:text-teal-600 active:text-teal-800 smooth-transition'/>
-                <h1 className='text-center py-12 text-4xl font-bold tracking-widest '>PREVIOUS MATCHES</h1>
+                <h1 className='text-center pt-20 pb-12 text-4xl font-bold tracking-widest '>PREVIOUS MATCHES</h1>
 
                 <div className='overflow-y-auto max-h-[67dvh] scrollbar px-2 md:px-32'>
                     <table className='w-full text-left'>
