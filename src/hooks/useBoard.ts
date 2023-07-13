@@ -5,15 +5,15 @@ import {ChessPieces, Colors} from "../constants/pieces-constants";
 import {setDivId} from "../logic/html-ids";
 
 type QueryResponseType = {
-    PieceId: number,
-    PieceName: number,
-    PieceColor: number,
-    PositionY: number,
-    PositionX: number,
-    isPieceAlive: boolean
-    UserId: string | null
-    MoveText: string | null
-    isPromotedPawn: boolean
+    pieceid: number,
+    piecename: number,
+    piececolor: number,
+    positiony: number,
+    positionx: number,
+    ispiecealive: boolean
+    userid: string | null
+    movetext: string | null
+    ispromotedpawn: boolean
 }
 
 export default function useBoard(gameid: string, userId: string, playerColor: Colors | null) {
@@ -41,14 +41,15 @@ export default function useBoard(gameid: string, userId: string, playerColor: Co
 
             setBoard(() => {
                 const newBoard = createBoard()
-                data.forEach(({ PieceId, PieceName, PieceColor, PositionY, PositionX, isPieceAlive, isPromotedPawn }: QueryResponseType) => {
-                    if (isPieceAlive)
-                        newBoard[PositionY][PositionX] =
+                data.forEach(({ pieceid, piecename, piececolor, positiony, positionx, ispiecealive, ispromotedpawn }: QueryResponseType) => {
+                    if (ispiecealive)
+                        newBoard[positiony][positionx] =
                             {
-                                PieceId,
-                                PieceName: isPromotedPawn ? ChessPieces.QUEEN : PieceName,
-                                PieceColor, isEmpty: false,
-                                isPromotedPawn
+                                PieceId: pieceid,
+                                PieceName: ispromotedpawn ? ChessPieces.QUEEN : piecename,
+                                PieceColor: piececolor,
+                                isEmpty: false,
+                                isPromotedPawn: ispromotedpawn
                             } as Cell
                 })
 
@@ -58,17 +59,17 @@ export default function useBoard(gameid: string, userId: string, playerColor: Co
             // Get players turn based on first move in db response
             const mostRecentMove = data.at(0) as QueryResponseType
             setIsPlayersTurn(() => {
-                if (mostRecentMove.UserId == null)
+                if (mostRecentMove.userid == null)
                     return playerColor === Colors.WHITE
                 else
-                    return mostRecentMove.UserId !== userId
+                    return mostRecentMove.userid !== userId
             })
 
             // Add all non-null move-text
             setMovesText([])
-            data.forEach(({ MoveText }: QueryResponseType) => {
-                if (MoveText != null)
-                    movesTextPushRight(MoveText)
+            data.forEach(({ movetext }: QueryResponseType) => {
+                if (movetext != null)
+                    movesTextPushRight(movetext)
 
             })
 

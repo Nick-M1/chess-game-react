@@ -27,14 +27,14 @@ type GameInfoType = {
 }
 
 type UserDBType = {
-    UserId: string
-    Name: string
+    userid: string
+    name: string
 
-    GameId: string
-    GameStartTimestamp: string
-    GameEndTimestamp: string
-    UserIdBlack: string | null
-    UserIdWhite: string | null
+    gameid: string
+    gamestarttimestamp: string
+    gameendtimestamp: string
+    useridblack: string | null
+    useridwhite: string | null
 }
 
 type BoardTheme = {

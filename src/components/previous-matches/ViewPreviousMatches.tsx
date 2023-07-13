@@ -1,5 +1,3 @@
-import {useEffect, useState} from "react";
-import {supabase} from "../../supabase_setup";
 import LayoutHeader from "../../layout/LayoutHeader";
 import NavButtonLeft from "../shared/NavButtonLeft";
 import {Link} from "react-router-dom";
@@ -28,12 +26,12 @@ export default function ViewPreviousMatches({ userid, userDB }: Props) {
                         </thead>
                         <tbody className='text-sm'>
                         { userDB.map(game => (
-                            <tr key={game.GameId} className='text-neutral-500 hover:text-neutral-600 smooth-transition'>
+                            <tr key={game.gameid} className='text-neutral-500 hover:text-neutral-600 smooth-transition'>
                                 <td className=' line-clamp-1 w-32 my-0.5'>
-                                    <Link to={`/game/${game.GameId}`}>{ game.GameId }</Link>
+                                    <Link to={`/game/${game.gameid}`}>{ game.gameid }</Link>
                                 </td>
-                                <td>{ game.GameStartTimestamp.split('T')[0] }</td>
-                                <td>{ userid === game.UserIdBlack ? 'Black' : 'White' }</td>
+                                <td>{ game.gamestarttimestamp.split('T')[0] }</td>
+                                <td>{ userid === game.useridblack ? 'Black' : 'White' }</td>
                             </tr>
                         ))}
                         </tbody>
